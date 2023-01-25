@@ -1,42 +1,44 @@
+import estilos from './Detalles.module.css'
+
 function Detalles() {
     const opcionFrecuencia = ['dia','semana','mes'];
     const iconos =['💻','🏃','📚','✈','💵']
     return ( 
-        <div>
-            <form>
-                <label>
+        <div className='tarjeta'>
+            <form className='p-4'>
+                <label className='label'>
                     Describe tu meta
-                    <input placeholder='Ej. hacer ejercicio' />
+                    <input className='input'  placeholder='Ej. hacer ejercicio' />
                 </label>
-                <label>
+                <label className='label'>
                     Frecuencia a cumplir la meta <span>Ej. una vez a la semana</span>
-                    <div>
-                        <input type='number' />
-                        <select>
+                    <div className = 'flex mb-6'>
+                        <input className='input mr-10'  type='number' />
+                        <select className='select'>
                             {opcionFrecuencia.map(opcion => <option value={opcion}>{opcion}</option>)}
                         </select>
                     </div>
                 </label>
-                <label>
+                <label className='label'>
                     Veces a completar tu meta
-                    <input type='number'placeholder='Ej. 50' />
+                    <input className='input'  type='number'placeholder='Ej. 50' />
                 </label>
-                <label>
+                <label className='label'>
                     Fecha limite:
-                    <input type='date' />
+                    <input className='input'  type='date' />
                 </label>
-                <label>
+                <label className='label'>
                     Escoge icono para la meta:
                     <div>
-                        <select>
+                        <select className='select'>
                             {iconos.map(opcion => <option value={opcion}>{opcion}</option>)}
                         </select>
                     </div>
                 </label>
             </form>
-            <div>
-                <button>Crear</button>
-                <button>Cancelar</button>
+            <div className={estilos.botones}>
+                <button className='boton boton--negro' >Crear</button>
+                <button className='boton boton--gris'>Cancelar</button>
             </div>
         </div>
      );
