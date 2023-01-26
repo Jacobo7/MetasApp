@@ -1,11 +1,12 @@
+import { Link } from 'react-router-dom';
 import estilos from '../compartidos/Vinculo.module.css'
 
-function Vinculo ({Icono, texto, href}){
+function Vinculo ({Icono, texto, to}){
     return(
-        <a className={estilos.vinculo} href={href}>
+        <Link to ={to} className={estilos.vinculo}>
                 <Icono className={estilos.icono}/>
                 {texto &&<span className={estilos.texto}>{texto}</span>}
-              </a>
+        </Link>
     );
 }
 

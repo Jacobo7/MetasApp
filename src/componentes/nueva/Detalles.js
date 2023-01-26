@@ -1,6 +1,29 @@
-import estilos from './Detalles.module.css'
+import {useEffect, useState} from 'react';
+import estilos from './Detalles.module.css';
 
 function Detalles() {
+
+    const [form,setForm]= useState({
+        detalles: '',
+        eventos: 1,
+        periodo: 'semana',
+        icono: '🏃',
+        meta: 52,
+        plazo: '2030-01-01',
+        completado: 25
+    });
+
+    const{detalles,eventos,periodo,icono,meta,plazo,completado} = form;
+
+    const onChange = (event, prop)=>{
+        setForm(estado =>({...estado, [prop]:event.target.value}));
+       
+    }
+
+    useEffect(()=>{
+        console.log(form)
+    }, [form])
+
     const opcionFrecuencia = ['dia','semana','mes'];
     const iconos =['💻','🏃','📚','✈','💵']
     return ( 
@@ -8,29 +31,66 @@ function Detalles() {
             <form className='p-4'>
                 <label className='label'>
                     Describe tu meta
-                    <input className='input'  placeholder='Ej. hacer ejercicio' />
+                    <input 
+                        className='input'  
+                        placeholder='Ej. hacer ejercicio' 
+                        value={detalles}
+                        onChange = {e => onChange(e,'detalles')}
+                    />
                 </label>
                 <label className='label'>
                     Frecuencia a cumplir la meta <span>Ej. una vez a la semana</span>
                     <div className = 'flex mb-6'>
-                        <input className='input mr-10'  type='number' />
-                        <select className='select'>
+                        <input 
+                            className='input mr-10'  
+                            type='number' 
+                            value={eventos}
+                            onChange = {e => onChange(e,'eventos')}
+                        />
+                        <select 
+                            className='select' 
+                            value={periodo}
+                            onChange = {e => onChange(e,'periodo')}
+                        >
                             {opcionFrecuencia.map(opcion => <option value={opcion}>{opcion}</option>)}
                         </select>
                     </div>
                 </label>
                 <label className='label'>
                     Veces a completar tu meta
-                    <input className='input'  type='number'placeholder='Ej. 50' />
+                    <input 
+                        className='input' 
+                        value={meta} 
+                        type='number'
+                        placeholder='Ej. 50' 
+                        onChange = {e => onChange(e,'meta')}
+                    />
                 </label>
                 <label className='label'>
                     Fecha limite:
-                    <input className='input'  type='date' />
+                    <input 
+                        className='input' 
+                        value={plazo} 
+                        type='date' 
+                        onChange = {e => onChange(e,'plazo')}
+                    />
+                </label>
+                <label className='label'>
+                    Cuantas veces has completado la meta:
+                    <input 
+                        className='input' 
+                        value={completado}
+                        onChange = {e => onChange(e,'completado')}
+                    />
                 </label>
                 <label className='label'>
                     Escoge icono para la meta:
                     <div>
-                        <select className='select'>
+                        <select 
+                            className='select' 
+                            value={icono}
+                            onChange = {e => onChange(e,'icono')}
+                        >
                             {iconos.map(opcion => <option value={opcion}>{opcion}</option>)}
                         </select>
                     </div>
