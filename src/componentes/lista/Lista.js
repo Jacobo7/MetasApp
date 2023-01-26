@@ -1,19 +1,13 @@
+import { useContext } from "react";
+import {Contexto} from "../../servicios/Memoria";
 import Meta from "./Meta";
 
-const listaMock = [{
-    "id": "1",
-    "detalles": "Correr por 30 minutos",
-    "periodo": "dia",
-    "eventos": 1,
-    "icono": "🏃",
-    "meta": 365,
-    "plazo":"2030-10-01",
-    "completado": 180
-}]
+
 
 function Lista() {
+    const [estado, enviar] = useContext(Contexto);
     return (
-        listaMock.map(meta => <Meta {...meta}></Meta>)
+        estado.orden.map(id => <Meta key={id} {...estado.objetos[id]}></Meta>)
     );
 }
 

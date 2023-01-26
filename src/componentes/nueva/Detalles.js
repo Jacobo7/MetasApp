@@ -1,4 +1,6 @@
-import {useEffect, useState} from 'react';
+import {useEffect, useState, useContext} from 'react';
+import { useNavigate } from 'react-router-dom';
+import { Contexto } from '../../servicios/Memoria';
 import estilos from './Detalles.module.css';
 
 function Detalles() {
@@ -13,6 +15,8 @@ function Detalles() {
         completado: 25
     });
 
+    const [estado, enviar] = useContext(Contexto);
+
     const{detalles,eventos,periodo,icono,meta,plazo,completado} = form;
 
     const onChange = (event, prop)=>{
@@ -21,8 +25,15 @@ function Detalles() {
     }
 
     useEffect(()=>{
-        console.log(form)
+        
     }, [form])
+
+    const navegar = useNavigate();
+    const crear = async() =>{
+        //console.log(form)
+       enviar({tipo:'crear', meta: form});
+       navegar('/');
+    }
 
     const opcionFrecuencia = ['dia','semana','mes'];
     const iconos =['💻','🏃','📚','✈','💵']
@@ -97,7 +108,7 @@ function Detalles() {
                 </label>
             </form>
             <div className={estilos.botones}>
-                <button className='boton boton--negro' >Crear</button>
+                <button className='boton boton--negro' onClick={crear}>Crear</button>
                 <button className='boton boton--gris'>Cancelar</button>
             </div>
         </div>
