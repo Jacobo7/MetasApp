@@ -26,15 +26,15 @@ function Detalles() {
        
     }
 //useefect pasa el id al formulario, primero validando si existe para mostrar toda la informacion 
+const metaMemoria = estado.objetos[id];
     useEffect(()=>{
-        const metaMemoria = estado.objetos[id];
         if(!id)return 
         
         if(!metaMemoria){
             return navegar('/404');
         }
-        setForm(estado.objetos[id]);
-    }, [id]);
+        setForm(metaMemoria);
+    }, [id, metaMemoria]);
 
     const navegar = useNavigate();
     const crear = () =>{
@@ -84,7 +84,7 @@ function Detalles() {
                             value={periodo}
                             onChange = {e => onChange(e,'periodo')}
                         >
-                            {opcionFrecuencia.map(opcion => <option value={opcion}>{opcion}</option>)}
+                            {opcionFrecuencia.map(opcion => <option key={opcion} value={opcion}>{opcion}</option>)}
                         </select>
                     </div>
                 </label>
@@ -123,7 +123,7 @@ function Detalles() {
                             value={icono}
                             onChange = {e => onChange(e,'icono')}
                         >
-                            {iconos.map(opcion => <option value={opcion}>{opcion}</option>)}
+                            {iconos.map(opcion => <option key={opcion} value={opcion}>{opcion}</option>)}
                         </select>
                     </div>
                 </label>
