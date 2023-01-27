@@ -1,0 +1,13 @@
+[
+    {
+        "id": "2",
+        "detalles": "Correr por 30 min",
+        "periodo": "dia",
+        "eventos": 1,
+        "icono": "🏃",
+        "meta": 365,
+        "plazo": "2023-02-01",
+        "completado":100
+
+    }
+]

@@ -1,7 +1,11 @@
 import { createContext, useReducer } from "react"
 
-const memoria = localStorage.getItem('metas');
-const estadoInicial = memoria ? JSON.parse(memoria): {
+//const memoria = localStorage.getItem('metas');
+// const estadoInicial = memoria ? JSON.parse(memoria): {
+//     orden: [],
+//     objetos: {}
+// }
+const estadoInicial = {
     orden: [],
     objetos: {}
 }
@@ -14,7 +18,7 @@ function reductor(estado,accion){
                 orden: metas.map(meta => meta.id),
                 objetos: metas.reduce((objeto,meta) => ({...objeto, [meta.id]:meta}),{})
             };
-            localStorage.setItem('metas',JSON.stringify(nuevoEstado));
+           // localStorage.setItem('metas',JSON.stringify(nuevoEstado));
             return nuevoEstado;
         }
         case 'crear':{
@@ -24,7 +28,7 @@ function reductor(estado,accion){
                 orden: [...estado.orden, id],
                 objetos: {...estado.objetos,[id] : {id, ...accion.meta }}
             }
-            localStorage.setItem('metas',JSON.stringify(nuevoEstado));
+            //localStorage.setItem('metas',JSON.stringify(nuevoEstado));
             return nuevoEstado;
         }
         case 'actualizar':{
@@ -34,18 +38,18 @@ function reductor(estado,accion){
                 ...accion.meta
             };
             const nuevoEstado = {...estado};
-            localStorage.setItem('metas',JSON.stringify(nuevoEstado));
+            //localStorage.setItem('metas',JSON.stringify(nuevoEstado));
             return nuevoEstado;
         }
         case 'borrar':{
             const id = accion.id;
             const nuevoOrden = estado.orden.filter(item => item !== id);
-            delete estado.objeto[id];
+            delete estado.objetos[id];
             const nuevoEstado = {
                 orden: nuevoOrden,
                 objetos: estado.objetos
             };
-            localStorage.setItem('metas',JSON.stringify(nuevoEstado));
+           // localStorage.setItem('metas',JSON.stringify(nuevoEstado));
             return nuevoEstado;
         }
         default:
