@@ -22,7 +22,7 @@ function reductor(estado,accion){
             return nuevoEstado;
         }
         case 'crear':{
-            const id = String(Math.random());//accion.meta.id;
+            const id = accion.meta.id;//String(Math.random());
             
             const nuevoEstado={
                 orden: [...estado.orden, id],
