@@ -1,6 +1,7 @@
 [
     {
         "id": "2",
+        "id_usuario":"3",
         "detalles": "Correr por 30 min",
         "periodo": "dia",
         "eventos": 1,

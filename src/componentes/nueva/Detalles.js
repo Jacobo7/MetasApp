@@ -9,7 +9,7 @@ function Detalles() {
     const {id} = useParams();
 
     const [form,setForm]= useState({
-        detalles: '',
+        detalles: 'Nueva Meta',
         eventos: 1,
         periodo: 'semana',
         icono: '🏃',
@@ -38,22 +38,22 @@ const metaMemoria = estado.objetos[id];
     }, [id, metaMemoria]);
 
     const navegar = useNavigate();
+
     const crear = async() =>{
-        //console.log(form)
-       const nuevaMeta = await crearMeta();
+       const nuevaMeta = await crearMeta(form);
        enviar({tipo:'crear', meta: nuevaMeta});
        navegar('/');
     }
     const actualizar = async () =>{
         //console.log(form)
-       const metaActualizada = await actualizarMeta();
+       const metaActualizada = await actualizarMeta(form);
        enviar({tipo:'actualizar', meta: metaActualizada});
        navegar('/');
     }
     const borrar = async () =>{
         //console.log(form)
-       const idBorrada = await borrarMeta();
-       enviar({tipo:'borrar',id: idBorrada});
+       await borrarMeta(form.id);
+       enviar({tipo:'borrar',id: form.id});
        navegar('/lista');
     }
     const cancelar = () =>{
